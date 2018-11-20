@@ -1,0 +1,76 @@
+<!--<?page title="PQL window" ?>-->
+<!--<zk>-->
+<!--<script src="customscript.js"></script>-->
+<!--<window title="ACE Editor for ZK" border="normal" mode="overlapped" position="center" width="80%" height="40%"-->
+<!--maximizable="true" apply="pql_zk.Composer">-->
+<!--<borderlayout hflex="1" vflex="1">-->
+
+<!--<center>-->
+
+<!--<aceditor id="aceEditor" mode="sql" width="100%" height="100%">-->
+<!--<attribute name="value">-->
+<!--SELECT * FROM * WHERE CanCooccur("A","B");-->
+<!--</attribute>-->
+
+<!--&lt;!&ndash;<attribute name="enableBasicAutocompletion">&ndash;&gt;-->
+<!--&lt;!&ndash;true&ndash;&gt;-->
+<!--&lt;!&ndash;</attribute>&ndash;&gt;-->
+<!--</aceditor>-->
+<!--</center>-->
+<!--</borderlayout>-->
+<!--<button label="Say Hello" onClick='myFunction("Printing value")'/>-->
+
+<!--<zscript>-->
+<!--void myFunction(String message){ //declare a function-->
+<!--Messagebox.show(message);-->
+<!--}-->
+<!--</zscript>-->
+<!--</window>-->
+<!--</zk>-->
+
+<!--===================================================================-->
+
+<zk>
+	<style src="/css/style.css"/>
+	<!--<div sclass="aceEditor">-->
+	<window title="ACE Editor for ZK" border="normal" mode="overlapped" position="center" width="80%" height="40%"
+			maximizable="true" apply="pql_zk.Composer">
+
+		<customisedaceeditor id="aceTextBox" mode="sql" width="100%" height="90%" >
+
+		<!--Example query-->
+			<attribute name="value">
+				SELECT * FROM * WHERE CanCooccur("A","B");
+			</attribute>
+
+		</customisedaceeditor>
+		<button label="Ok" forward="onClick=onClickOk"/>&#160;
+		<button label="Cancel" forward="onClick=onClickCancel"/>
+
+
+	</window>
+	<!--</div>-->
+</zk>
+
+		<!--===================================================================-->
+
+
+<!--<zk>-->
+	<!--<style>-->
+		<!--.mydb {-->
+		<!--background-color: green;-->
+		<!--}-->
+	<!--</style>-->
+	<!--<window border="normal" title="Click the buttons" apply="pql_zk.Composer">-->
+		<!--<vlayout>-->
+			<!--<hlayout id="container">-->
+				<!--<textbox sclass="mydb" value="having Sclass" />-->
+			<!--</hlayout>-->
+			<!--<button id="btn" label="Create new Textbox from Java" forward="onClick=onClickButton1" />-->
+			<!--<hlayout>-->
+				<!--<textbox id="txtbox2" />-->
+				<!--<button label="Apply CSS" forward="onClick=onClickButton2" />-->
+			<!--</hlayout>-->
+		<!--</vlayout>-->
+	<!--</window>-->
+<!--</zk>-->
