@@ -36,7 +36,7 @@
 	<window title="ACE Editor for ZK" border="normal" mode="overlapped" position="center" width="80%" height="40%"
 			maximizable="true" apply="pql_zk.Composer">
 
-		<customisedaceeditor id="aceTextBox" mode="sql" width="100%" height="90%" >
+		<customisedaceeditor id="aceTextBox" mode="pql" theme="dreamweaver" width="100%" height="90%" >
 
 		<!--Example query-->
 			<attribute name="value">

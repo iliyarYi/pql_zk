@@ -7,11 +7,13 @@ ace.define("ace/mode/pql_highlight_rules", ["require", "exports", "module", "ace
                 t = "true|false",
                 n = "avg|count|first|last|max|min|sum|ucase|lcase|mid|len|round|rank|now|format|coalesce|ifnull|isnull|nvl",
                 r = "int|numeric|decimal|date|varchar|char|bigint|float|double|bit|binary|text|set|timestamp|money|real|number|integer",
+                c = "yiliyaer|something|canc",
                 i = this.createKeywordMapper({
                     "support.function": n,
                     keyword: e,
                     "constant.language": t,
-                    "storage.type": r
+                    "storage.type": r,
+                    "keyword.custom": c,
                 }, "identifier", !0);
             this.$rules = {
                 start: [{
