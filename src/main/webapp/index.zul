@@ -1,76 +1,63 @@
-<!--<?page title="PQL window" ?>-->
+
 <!--<zk>-->
-<!--<script src="customscript.js"></script>-->
-<!--<window title="ACE Editor for ZK" border="normal" mode="overlapped" position="center" width="80%" height="40%"-->
-<!--maximizable="true" apply="pql_zk.Composer">-->
-<!--<borderlayout hflex="1" vflex="1">-->
+	<!--<window>-->
+		<!--<panel title="Splitter" border="normal" width="100%">-->
+			<!--<panelchildren>-->
+				<!--<hbox spacing="0" width="100%" height="100%">-->
+					<!--<vbox spacing="0" width="100%" heights="100px,100px">-->
+						<!--&lt;!&ndash;Column 1-1: The left-top box. To know whether a splitter&ndash;&gt;-->
+						<!--&lt;!&ndash;is collapsed, you can listen to the onOpen event.&ndash;&gt;-->
 
-<!--<center>-->
+						<!--<customisedaceeditor id="aceTextBox" mode="pql" theme="dreamweaver" width="1000px" height="250px" >-->
+							<!--&lt;!&ndash;Example query&ndash;&gt;-->
+							<!--<attribute name="value">-->
+								<!--SELECT * FROM * WHERE CanCooccur("A","B");-->
+							<!--</attribute>-->
+						<!--</customisedaceeditor>-->
 
-<!--<aceditor id="aceEditor" mode="sql" width="100%" height="100%">-->
-<!--<attribute name="value">-->
-<!--SELECT * FROM * WHERE CanCooccur("A","B");-->
-<!--</attribute>-->
+					<!--</vbox>-->
+					<!--<splitter id="s2" collapse="before"/>-->
+					<!--Column 2: Whether a splitter allows users to open or collapse-->
+					<!--depending on the collapse attribue.-->
+				<!--</hbox>-->
+			<!--</panelchildren>-->
+		<!--</panel>-->
+		<!--<button label="Ok" forward="onClick=onClickOk"/>&#160;-->
+		<!--<button label="Cancel" forward="onClick=onClickCancel"/>-->
+	<!--</window>-->
 
-<!--&lt;!&ndash;<attribute name="enableBasicAutocompletion">&ndash;&gt;-->
-<!--&lt;!&ndash;true&ndash;&gt;-->
-<!--&lt;!&ndash;</attribute>&ndash;&gt;-->
-<!--</aceditor>-->
-<!--</center>-->
-<!--</borderlayout>-->
-<!--<button label="Say Hello" onClick='myFunction("Printing value")'/>-->
-
-<!--<zscript>-->
-<!--void myFunction(String message){ //declare a function-->
-<!--Messagebox.show(message);-->
-<!--}-->
-<!--</zscript>-->
-<!--</window>-->
 <!--</zk>-->
 
-<!--===================================================================-->
+
 
 <zk>
 	<style src="/css/style.css"/>
 	<!--<div sclass="aceEditor">-->
-	<window title="ACE Editor for ZK" border="normal" mode="overlapped" position="center" width="80%" height="40%"
+	<window title="ACE Editor for ZK" border="normal" mode="overlapped" position="center" width="80%" height="60%"
 			maximizable="true" apply="pql_zk.Composer">
+		<div id="AceEditor" width="100%" height="60%">
 
 		<customisedaceeditor id="aceTextBox" mode="pql" theme="dreamweaver" width="100%" height="90%" >
 
 		<!--Example query-->
 			<attribute name="value">
 				SELECT * FROM * WHERE CanCooccur("A","B");
+				<!--SELECT * FROM * WHERE Executes(<*,"B",*,"B",*>);-->
 			</attribute>
-
 		</customisedaceeditor>
-		<button label="Ok" forward="onClick=onClickOk"/>&#160;
-		<button label="Cancel" forward="onClick=onClickCancel"/>
-
-
+			<button label="Ok" forward="onClick=onClickOk"/>&#160;
+			<button label="Cancel" forward="onClick=onClickCancel"/>
+		</div>
+		<div id="ResultOfQuery" width="100%" height="30%">
+			<separator />
+			<separator />
+			<separator />
+			<separator bar="true" />
+			Result:
+			<separator bar="true" />
+			<separator />
+			<label id="resultLabel" value="@bind(Composer.getResult())"></label>
+		</div>
 	</window>
-	<!--</div>-->
+
 </zk>
-
-		<!--===================================================================-->
-
-
-<!--<zk>-->
-	<!--<style>-->
-		<!--.mydb {-->
-		<!--background-color: green;-->
-		<!--}-->
-	<!--</style>-->
-	<!--<window border="normal" title="Click the buttons" apply="pql_zk.Composer">-->
-		<!--<vlayout>-->
-			<!--<hlayout id="container">-->
-				<!--<textbox sclass="mydb" value="having Sclass" />-->
-			<!--</hlayout>-->
-			<!--<button id="btn" label="Create new Textbox from Java" forward="onClick=onClickButton1" />-->
-			<!--<hlayout>-->
-				<!--<textbox id="txtbox2" />-->
-				<!--<button label="Apply CSS" forward="onClick=onClickButton2" />-->
-			<!--</hlayout>-->
-		<!--</vlayout>-->
-	<!--</window>-->
-<!--</zk>-->

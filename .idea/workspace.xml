@@ -15,11 +15,20 @@
       <file leaf-file-name="Composer.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/pql_zk/Composer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="494">
-              <caret line="85" column="46" lean-forward="true" selection-start-line="85" selection-start-column="46" selection-end-line="85" selection-end-column="46" />
+            <state relative-caret-position="597">
+              <caret line="94" column="45" selection-start-line="94" selection-start-column="45" selection-end-line="94" selection-end-column="45" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.zul" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/index.zul">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="620">
+              <caret line="58" column="34" selection-start-line="58" selection-start-column="23" selection-end-line="58" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -29,6 +38,15 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="90">
               <caret line="18" column="37" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PQLToolCLI.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$PROJECT_DIR$/src/main/lib/PQL.TOOL-1.2.jar!/org/pql/tool/PQLToolCLI.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="415">
+              <caret line="80" column="12" selection-start-line="79" selection-start-column="12" selection-end-line="80" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -90,8 +108,8 @@
       <find>LabelManagerLuceneVSM</find>
       <find>PQLBasicPredicatesMySQL</find>
       <find>labelMngr</find>
-      <find>msg</find>
       <find>queryResult</find>
+      <find>msg</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/src</dir>
@@ -117,10 +135,10 @@
         <option value="$PROJECT_DIR$/src/main/resources/web/js/tools/dynamia/zk/addons/ace/mode-asl.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/css/style.css" />
         <option value="$PROJECT_DIR$/src/main/resources/web/js/tools/dynamia/zk/addons/ace/snippets/pql.js" />
-        <option value="$PROJECT_DIR$/src/main/webapp/index.zul" />
         <option value="$PROJECT_DIR$/src/main/resources/web/js/tools/dynamia/zk/addons/ace/theme-dreamweaver.js" />
         <option value="$PROJECT_DIR$/src/main/resources/web/js/tools/dynamia/zk/addons/ace/mode-pql.js" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/webapp/index.zul" />
         <option value="$PROJECT_DIR$/src/main/java/pql_zk/Composer.java" />
       </list>
     </option>
@@ -184,48 +202,7 @@
               <item name="pql_zk" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pql_zk" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pql_zk" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="pql_zk" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pql_zk" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pql_zk" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pql_zk" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pql_zk" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="PQL.TOOL-1.2.jar" type="ab9368bb:PsiFileNode" />
-            </path>
-            <path>
-              <item name="pql_zk" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pql_zk" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="PQL.TOOL-1.2.jar" type="ab9368bb:PsiFileNode" />
-              <item name="ini" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pql_zk" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pql_zk" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="PQL.TOOL-1.2.jar" type="ab9368bb:PsiFileNode" />
-              <item name="tool" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -242,10 +219,10 @@
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/src/main" />
       <recent name="$PROJECT_DIR$/src/main/java" />
       <recent name="$PROJECT_DIR$/src/main/java/pql_zk" />
-      <recent name="$PROJECT_DIR$/src/main/lib" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/java/pql_zk" />
@@ -381,10 +358,10 @@
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="1" />
       <window_info anchor="bottom" id="Version Control" order="2" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Run" order="6" visible="true" weight="0.2517413" />
+      <window_info anchor="bottom" id="Run" order="6" visible="true" weight="0.2517413" />
       <window_info anchor="bottom" id="Terminal" order="0" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="3" visible="true" weight="0.30990416" />
+      <window_info active="true" content_ui="combo" id="Project" order="3" visible="true" weight="0.30990416" />
       <window_info anchor="bottom" id="Find" order="5" weight="0.32935324" />
       <window_info id="Structure" order="4" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="4" weight="0.25" />
@@ -567,12 +544,6 @@
           <properties />
           <option name="timeStamp" value="48" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/pql_zk/Composer.java</url>
-          <line>85</line>
-          <properties />
-          <option name="timeStamp" value="53" />
-        </line-breakpoint>
       </breakpoints>
       <option name="time" value="54" />
     </breakpoint-manager>
@@ -592,13 +563,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="87" selection-start-line="87" selection-end-line="87" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/src/main/resources/PQL.TOOL-1.2.jar!/META-INF/MANIFEST.MF">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -702,13 +666,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PQL.ini">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/src/main/lib/PQL.TOOL-1.2.jar!/org/pql/tool/PQLToolCLI.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-351">
-          <caret line="185" column="46" selection-start-line="185" selection-start-column="43" selection-end-line="185" selection-end-column="46" />
-        </state>
-      </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/src/main/lib/PQL.TOOL-1.2.jar!/org/pql/query/PQLQueryMySQL.class">
       <provider selected="true" editor-type-id="text-editor">
@@ -963,13 +920,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/src/main/lib/PQL.TOOL-1.2.jar!/org/pql/api/PQLAPI.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="18" column="37" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/src/main/lib/PQL.TOOL-1.2.jar!/org/pql/api/AbstractPQLAPI.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -984,10 +934,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$PROJECT_DIR$/src/main/lib/PQL.TOOL-1.2.jar!/org/pql/tool/PQLToolCLI.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="415">
+          <caret line="80" column="12" selection-start-line="79" selection-start-column="12" selection-end-line="80" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/src/main/lib/PQL.TOOL-1.2.jar!/org/pql/api/PQLAPI.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="18" column="37" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/index.zul">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="620">
+          <caret line="58" column="34" selection-start-line="58" selection-start-column="23" selection-end-line="58" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pql_zk/Composer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="85" column="46" lean-forward="true" selection-start-line="85" selection-start-column="46" selection-end-line="85" selection-end-column="46" />
+        <state relative-caret-position="597">
+          <caret line="94" column="45" selection-start-line="94" selection-start-column="45" selection-end-line="94" selection-end-column="45" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1038,7 +1009,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2" />
+                <option value="0.41954023" />
               </list>
             </option>
           </splitter-proportions>
@@ -1051,6 +1022,7 @@
             <option name="proportions">
               <list>
                 <option value="0.41954023" />
+                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>
