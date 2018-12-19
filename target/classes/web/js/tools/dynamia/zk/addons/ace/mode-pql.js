@@ -7,7 +7,7 @@ ace.define("ace/mode/pql_highlight_rules", ["require", "exports", "module", "ace
                 t = "true|false",
                 n = "avg|count|first|last|max|min|sum|ucase|lcase|mid|len|round|rank|now|format|coalesce|ifnull|isnull|nvl",
                 r = "int|numeric|decimal|date|varchar|char|bigint|float|double|bit|binary|text|set|timestamp|money|real|number|integer",
-                c = "yiliyaer|something|canc",
+                c = "canoccur|alwaysoccurs|executes|canconflict|cancooccur|conflict|cooccur|totalcausal|totalconcurrent",
                 i = this.createKeywordMapper({
                     "support.function": n,
                     keyword: e,
@@ -15,6 +15,7 @@ ace.define("ace/mode/pql_highlight_rules", ["require", "exports", "module", "ace
                     "storage.type": r,
                     "keyword.custom": c,
                 }, "identifier", !0);
+
             this.$rules = {
                 start: [{
                     token: "comment",
@@ -37,7 +38,7 @@ ace.define("ace/mode/pql_highlight_rules", ["require", "exports", "module", "ace
                     regex: "[+-]?\\d+(?:(?:\\.\\d*)?(?:[eE][+-]?\\d+)?)?\\b"
                 }, {
                     token: i,
-                    regex: "[a-zA-Z_$][a-zA-Z0-9_$]*\\b"
+                    regex: "[A-Z_$][A-Z_$]*\\b",
                 }, {
                     token: "keyword.operator",
                     regex: "\\+|\\-|\\/|\\/\\/|%|<@>|@>|<@|&|\\^|~|<|>|<=|=>|==|!=|<>|="

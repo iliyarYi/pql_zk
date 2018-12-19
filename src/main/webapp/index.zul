@@ -1,39 +1,7 @@
-
-<!--<zk>-->
-	<!--<window>-->
-		<!--<panel title="Splitter" border="normal" width="100%">-->
-			<!--<panelchildren>-->
-				<!--<hbox spacing="0" width="100%" height="100%">-->
-					<!--<vbox spacing="0" width="100%" heights="100px,100px">-->
-						<!--&lt;!&ndash;Column 1-1: The left-top box. To know whether a splitter&ndash;&gt;-->
-						<!--&lt;!&ndash;is collapsed, you can listen to the onOpen event.&ndash;&gt;-->
-
-						<!--<customisedaceeditor id="aceTextBox" mode="pql" theme="dreamweaver" width="1000px" height="250px" >-->
-							<!--&lt;!&ndash;Example query&ndash;&gt;-->
-							<!--<attribute name="value">-->
-								<!--SELECT * FROM * WHERE CanCooccur("A","B");-->
-							<!--</attribute>-->
-						<!--</customisedaceeditor>-->
-
-					<!--</vbox>-->
-					<!--<splitter id="s2" collapse="before"/>-->
-					<!--Column 2: Whether a splitter allows users to open or collapse-->
-					<!--depending on the collapse attribue.-->
-				<!--</hbox>-->
-			<!--</panelchildren>-->
-		<!--</panel>-->
-		<!--<button label="Ok" forward="onClick=onClickOk"/>&#160;-->
-		<!--<button label="Cancel" forward="onClick=onClickCancel"/>-->
-	<!--</window>-->
-
-<!--</zk>-->
-
-
-
 <zk>
 	<style src="/css/style.css"/>
-	<!--<div sclass="aceEditor">-->
-	<window title="ACE Editor for ZK" border="normal" mode="overlapped" position="center" width="80%" height="60%"
+
+	<window title="PQL Editor" border="normal" mode="overlapped" position="center" width="80%" height="60%"
 			maximizable="true" apply="pql_zk.Composer">
 		<div id="AceEditor" width="100%" height="60%">
 
@@ -41,12 +9,27 @@
 
 		<!--Example query-->
 			<attribute name="value">
-				SELECT * FROM * WHERE CanCooccur("A","B");
+				SELECT * FROM * WHERE CanCooccur("A","B") AND AlwaysOccurs("C");
+				<!--SELECT * FROM * WHERE CanCooccur("A","B");-->
 				<!--SELECT * FROM * WHERE Executes(<*,"B",*,"B",*>);-->
 			</attribute>
 		</customisedaceeditor>
 			<button label="Ok" forward="onClick=onClickOk"/>&#160;
 			<button label="Cancel" forward="onClick=onClickCancel"/>
+			<separator orient="vertical" width="30%" ></separator>
+
+			<button label="PQL Grammar File">
+				<attribute name="onClick">{
+					<![CDATA[
+							java.io.File file = new java.io.File("./PQL.g4");
+							String result = org.zkoss.io.Files.readAll(new java.io.FileReader(file)).toString();
+							Messagebox.show(result, "PQL Grammar", Messagebox.OK, Messagebox.EXCLAMATION);
+						]]>
+					}
+				</attribute>
+			</button>
+
+			<button label="Parse" forward="onClick=onClickParse"/>
 		</div>
 		<div id="ResultOfQuery" width="100%" height="30%">
 			<separator />
@@ -58,6 +41,8 @@
 			<separator />
 			<label id="resultLabel" value="@bind(Composer.getResult())"></label>
 		</div>
+
+
 	</window>
 
 </zk>

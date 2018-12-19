@@ -1,7 +1,0 @@
-<window title="User" border="normal" mode="modal">
-	<label value="Name:" />
-	<textbox value="${arg.name}"/>
-	<separator/>
-	<label value="Age:" />
-	<intbox value="${arg.age}"/>
-</window>

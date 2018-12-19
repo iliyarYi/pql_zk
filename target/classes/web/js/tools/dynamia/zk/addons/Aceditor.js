@@ -48,7 +48,7 @@ tools.dynamia.zk.addons.Aceditor = zk.$extends(zul.inp.Textbox, {
     bind_: function () {
         this.$supers('bind_', arguments);
 
-
+        ace.require("../web.js.tools.dynamia.zk.addons.ace/ext-language_tools");
         var elem = this.$n(), widget = this, editor = ace.edit(this.uuid), session, base, lines, min, max;
         lines = editor.getSession().getDocument().getLength();
         base = zk.ajaxURI('/web/js/tools/dynamia/zk/addons/ace/', {au: true});
@@ -71,7 +71,10 @@ tools.dynamia.zk.addons.Aceditor = zk.$extends(zul.inp.Textbox, {
         editor.renderer.setShowGutter(this._showgutter);
         editor.setReadOnly(this._readonly);
         editor.setAutoScrollEditorIntoView(true);
-        editor.setOptions({fontSize: this._fontSize});
+        editor.setOptions({
+            fontSize: this._fontSize,
+            enableBasicAutocompletion: true
+            });
 
         editor.on('blur', function (e) {
             widget.setValue(editor.getValue());
@@ -81,6 +84,7 @@ tools.dynamia.zk.addons.Aceditor = zk.$extends(zul.inp.Textbox, {
             var annot = session.getAnnotations();
             widget.smartUpdate('annotations', annot);
         });
+
 
         setTimeout(function () {
             editor.resize();

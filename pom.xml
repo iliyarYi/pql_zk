@@ -65,11 +65,23 @@
 			<artifactId>commons-io</artifactId>
 			<version>${commons-io}</version>
 		</dependency>
+		<!--<dependency>-->
+		<!--<groupId>org.antlr</groupId>-->
+		<!--<artifactId>antlr4-runtime</artifactId>-->
+		<!--<version>4.1</version>-->
+		<!--<scope>system</scope>-->
+		<!--<systemPath>${project.basedir}/src/main/lib/antlr-4.1-complete.jar</systemPath>-->
+		<!--</dependency>-->
 		<dependency>
 			<groupId>org.antlr</groupId>
 			<artifactId>antlr4-runtime</artifactId>
 			<version>4.7.1</version>
 		</dependency>
+        <dependency>
+            <groupId>org.antlr</groupId>
+            <artifactId>antlr4</artifactId>
+            <version>4.7.1</version>
+        </dependency>
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -371,8 +383,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>2.3.2</version>
 				<configuration>
-					<source>6</source>
-					<target>6</target>
+					<source>8</source>
+					<target>8</target>
 				</configuration>
 			</plugin>
 			<!-- Build war -->
