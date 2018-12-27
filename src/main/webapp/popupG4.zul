@@ -1,0 +1,10 @@
+<zk>
+
+	<window title="modalDialog" border="normal" closable="true" position="center,center" width="80%" height="60%"
+			maximizable="true" apply="pql_zk.Composer" action="show: slideDown;hide: slideUp">>
+
+		<button label="PQL Grammar File" forward="onClick=onClickShowG4" />
+		<label id="grammarLabel" value="@bind(Composer.returnG4asString())"></label>
+	</window>
+
+</zk>

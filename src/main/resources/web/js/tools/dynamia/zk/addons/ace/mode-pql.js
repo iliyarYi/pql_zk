@@ -3,18 +3,18 @@ ace.define("ace/mode/pql_highlight_rules", ["require", "exports", "module", "ace
     var r = e("../lib/oop"),
         i = e("./text_highlight_rules").TextHighlightRules,
         s = function() {
-            var e = "select|insert|update|delete|from|where|and|or|group|by|order|limit|offset|having|as|case|when|else|end|type|left|right|join|on|outer|desc|asc|union|create|table|primary|key|if|foreign|not|references|default|null|inner|cross|natural|database|drop|grant",
-                t = "true|false",
-                n = "avg|count|first|last|max|min|sum|ucase|lcase|mid|len|round|rank|now|format|coalesce|ifnull|isnull|nvl",
-                r = "int|numeric|decimal|date|varchar|char|bigint|float|double|bit|binary|text|set|timestamp|money|real|number|integer",
-                c = "canoccur|alwaysoccurs|executes|canconflict|cancooccur|conflict|cooccur|totalcausal|totalconcurrent",
+            var e = "SELECT|INSERT|INTO|FROM|WHERE|EQUALS|OVERLAPS|WITH|SUBSET|PROPER|GetTasks|NOT|AND|OR|ANY|EACH|ALL",
+                t = "TRUE|FALSE",
+                n = "AVG|COUNT|MIN|MAX",
+                r = "YILIYAER|PLACEHODLER",
+                c = "CanOccur|AlwaysOccurs|Executes|Canconflict|CanCooccur|Conflict|Cooccur|TotalCasual|TotalConcurrent",
                 i = this.createKeywordMapper({
                     "support.function": n,
                     keyword: e,
                     "constant.language": t,
                     "storage.type": r,
                     "keyword.custom": c,
-                }, "identifier", !0);
+                }, "identifier", false);
             this.$rules = {
                 start: [{
                     token: "comment",
@@ -24,20 +24,12 @@ ace.define("ace/mode/pql_highlight_rules", ["require", "exports", "module", "ace
                     start: "/\\*",
                     end: "\\*/"
                 }, {
-                    token: "string",
-                    regex: '".*?"'
-                }, {
-                    token: "string",
-                    regex: "'.*?'"
-                }, {
-                    token: "string",
-                    regex: "`.*?`"
-                }, {
                     token: "constant.numeric",
                     regex: "[+-]?\\d+(?:(?:\\.\\d*)?(?:[eE][+-]?\\d+)?)?\\b"
                 }, {
                     token: i,
-                    regex: "[A-Z_$][A-Z_$]*\\b",
+                    regex: "[a-zA-Z_$][a-zA-Z0-9_$]*\\b",
+                    caseInsensitive: false
                 }, {
                     token: "keyword.operator",
                     regex: "\\+|\\-|\\/|\\/\\/|%|<@>|@>|<@|&|\\^|~|<|>|<=|=>|==|!=|<>|="

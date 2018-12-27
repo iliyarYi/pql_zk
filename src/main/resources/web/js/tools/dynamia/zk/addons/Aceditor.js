@@ -67,13 +67,13 @@ tools.dynamia.zk.addons.Aceditor = zk.$extends(zul.inp.Textbox, {
             this._fontSize = 14
         }
 
-
         editor.renderer.setShowGutter(this._showgutter);
         editor.setReadOnly(this._readonly);
         editor.setAutoScrollEditorIntoView(true);
         editor.setOptions({
             fontSize: this._fontSize,
-            enableBasicAutocompletion: true
+            enableLiveAutocompletion: true,
+            autoScrollEditorIntoView: true
             });
 
         editor.on('blur', function (e) {
@@ -84,6 +84,7 @@ tools.dynamia.zk.addons.Aceditor = zk.$extends(zul.inp.Textbox, {
             var annot = session.getAnnotations();
             widget.smartUpdate('annotations', annot);
         });
+
 
 
         setTimeout(function () {

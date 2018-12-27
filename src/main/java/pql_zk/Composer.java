@@ -17,17 +17,22 @@ import org.pql.label.ILabelManager;
 import org.pql.label.LabelManagerLuceneVSM;
 import org.pql.label.LabelManagerType;
 import org.zkoss.zk.ui.Component;
+import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zk.ui.util.GenericForwardComposer;
 import org.zkoss.zul.Hlayout;
 import org.zkoss.zul.Label;
 import org.zkoss.zul.Textbox;
+import org.zkoss.zul.Window;
 import org.pql.query.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import java.awt.*;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 import org.pql.ini.*;
 import org.pql.api.*;
@@ -43,11 +48,13 @@ public class Composer extends GenericForwardComposer {
     Textbox aceTextBox;
     // Result Label ID in zul
     Label resultLabel;
+    Label grammarLabel;
+
 
     public void doAfterCompose(Component comp) throws Exception {
         super.doAfterCompose(comp);
-
     }
+
     // Function to be executed when OK button is clicked
     public void onClickOk(Event event) throws Exception{
         // Get value entered in ace editor
@@ -150,21 +157,24 @@ public class Composer extends GenericForwardComposer {
     }
 
 
-//    private static void writeUsingOutputStream(String data) {
-//        OutputStream os = null;
-//        try {
-//            os = new FileOutputStream(new File("./myPQL.pql"));
-//            os.write(data.getBytes(), 0, data.length());
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }finally{
-//            try {
-//                os.close();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//    }
+    public void onClickG4() {
+
+        //create a window programmatically and use it as a modal dialog.
+        Window window = (Window)Executions.createComponents(
+                "popupG4.zul", null, null);
+        window.doModal();
+    }
+
+    public String getG4asString() {
+        try {
+            String content = new String(Files.readAllBytes(Paths.get("./PQL.g4")), "UTF-8");
+         //   System.out.println(content);
+            return content;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "Error loading G4 file";
+        }
+    }
 }
 
 

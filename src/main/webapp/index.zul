@@ -5,28 +5,29 @@
 			maximizable="true" apply="pql_zk.Composer">
 		<div id="AceEditor" width="100%" height="60%">
 
-		<customisedaceeditor id="aceTextBox" mode="pql" theme="dreamweaver" width="100%" height="90%" >
+			<customisedaceeditor id="aceTextBox" mode="pql" theme="dreamweaver" width="100%" height="90%" >
 
-		<!--Example query-->
-			<attribute name="value">
-				SELECT * FROM * WHERE CanCooccur("A","B") AND AlwaysOccurs("C");
-				<!--SELECT * FROM * WHERE CanCooccur("A","B");-->
-				<!--SELECT * FROM * WHERE Executes(<*,"B",*,"B",*>);-->
-			</attribute>
-		</customisedaceeditor>
+				<!--Example query-->
+				<attribute name="value">
+					SELECT * FROM * WHERE CanCooccur("A","B") AND AlwaysOccurs("C");
+					<!--SELECT * FROM * WHERE CanCooccur("A","B");-->
+					<!--SELECT * FROM * WHERE Executes(<*,"B",*,"B",*>);-->
+				</attribute>
+			</customisedaceeditor>
 			<button label="Ok" forward="onClick=onClickOk"/>&#160;
 			<button label="Cancel" forward="onClick=onClickCancel"/>
 			<separator orient="vertical" width="30%" ></separator>
 
+
 			<button label="PQL Grammar File">
-				<attribute name="onClick">{
-					<![CDATA[
-							java.io.File file = new java.io.File("./PQL.g4");
-							String result = org.zkoss.io.Files.readAll(new java.io.FileReader(file)).toString();
-							Messagebox.show(result, "PQL Grammar", Messagebox.OK, Messagebox.EXCLAMATION);
-						]]>
-					}
-				</attribute>
+			<attribute name="onClick">{
+			<![CDATA[
+			java.io.File file = new java.io.File("./PQL.g4");
+			String result = org.zkoss.io.Files.readAll(new java.io.FileReader(file)).toString();
+			Messagebox.show(result, "PQL Grammar", Messagebox.OK, Messagebox.EXCLAMATION);
+			]]>
+			}
+			</attribute>
 			</button>
 
 			<button label="Parse" forward="onClick=onClickParse"/>
