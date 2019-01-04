@@ -44,17 +44,41 @@ tools.dynamia.zk.addons.Aceditor = zk.$extends(zul.inp.Textbox, {
         }
     },
 
-
     bind_: function () {
         this.$supers('bind_', arguments);
 
-        ace.require("../web.js.tools.dynamia.zk.addons.ace/ext-language_tools");
         var elem = this.$n(), widget = this, editor = ace.edit(this.uuid), session, base, lines, min, max;
         lines = editor.getSession().getDocument().getLength();
         base = zk.ajaxURI('/web/js/tools/dynamia/zk/addons/ace/', {au: true});
         ace.config.set('basePath', base);
         session = editor.getSession();
         this._editor = editor;
+
+
+        var staticWordCompleter = {
+            getCompletions: function(editor, session, pos, prefix, callback) {
+                var allWords = [];
+                var customBlueKeywords = blueKeywords();
+                customBlueKeywords = customBlueKeywords.split("|");
+                var customBooleanKeywords = booleanKeywords();
+                customBooleanKeywords = customBooleanKeywords.split("|");
+                var customGreyKeywords = greyKeywords();
+                customGreyKeywords = customGreyKeywords.split("|");
+                var customGreenKeywords = greenKeywords();
+                customGreenKeywords = customGreenKeywords.split("|");
+                allWords = allWords.concat(customBlueKeywords,customBooleanKeywords,customGreyKeywords,customGreenKeywords);
+                var wordList = allWords;
+                callback(null, wordList.map(function(word) {
+                    return {
+                        caption: word,
+                        value: word,
+                        meta: ""
+                    };
+                }));
+
+            }
+        }
+
 
 
         if (this._theme) {
@@ -67,13 +91,15 @@ tools.dynamia.zk.addons.Aceditor = zk.$extends(zul.inp.Textbox, {
             this._fontSize = 14
         }
 
+        editor.completers = [staticWordCompleter];
         editor.renderer.setShowGutter(this._showgutter);
         editor.setReadOnly(this._readonly);
         editor.setAutoScrollEditorIntoView(true);
         editor.setOptions({
             fontSize: this._fontSize,
+            enableBasicAutocompletion: true,
             enableLiveAutocompletion: true,
-            autoScrollEditorIntoView: true
+            autoScrollEditorIntoView: false
             });
 
         editor.on('blur', function (e) {

@@ -1,43 +1,32 @@
 package pql_zk;
 
 
-import com.sun.org.apache.bcel.internal.generic.NEW;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CommonTokenStream;
-import org.antlr.v4.runtime.misc.ParseCancellationException;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import org.antlr.v4.gui.*;
-import org.jbpt.persist.MySQLConnection;
 import org.pql.antlr.PQLBaseListener;
 import org.pql.antlr.PQLLexer;
 import org.pql.antlr.PQLParser;
-import org.pql.label.ILabelManager;
-import org.pql.label.LabelManagerLuceneVSM;
-import org.pql.label.LabelManagerType;
 import org.zkoss.zk.ui.Component;
-import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.event.Event;
-import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zk.ui.util.GenericForwardComposer;
 import org.zkoss.zul.Hlayout;
 import org.zkoss.zul.Label;
 import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Window;
+import org.zkoss.zk.ui.*;
+import org.zkoss.zk.ui.util.*;
 import org.pql.query.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
 import java.awt.*;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.*;
 import org.pql.ini.*;
 import org.pql.api.*;
-
-import javax.swing.*;
+import java.util.Map.Entry;
 
 public class Composer extends GenericForwardComposer {
 
@@ -48,8 +37,11 @@ public class Composer extends GenericForwardComposer {
     Textbox aceTextBox;
     // Result Label ID in zul
     Label resultLabel;
-    Label grammarLabel;
-
+    Label attributeLabel;
+    Label locationLabel;
+    Label variableLabel;
+    Label taskLabel;
+    Iterator var29;
 
     public void doAfterCompose(Component comp) throws Exception {
         super.doAfterCompose(comp);
@@ -92,22 +84,28 @@ public class Composer extends GenericForwardComposer {
             // Show notification to user
             Clients.showNotification("Query Successful!", "info", null, null, 1000);
 //            System.out.println(queryResult.getSearchResults());
+            // Set the result label value to show in frontend
+            // resultLabel ID is set in .zul
+            resultLabel.setValue(getResult());
+            attributeLabel.setValue(getAttributes());
+            locationLabel.setValue(getLocations());
+            variableLabel.setValue(getVariables());
+            taskLabel.setValue(getTasks());
         } catch (Exception e) {
             //Get error message and show it to user as error notification when bad things happen
             String error = e.getMessage();
-            System.out.println("Error!"+e);
             Clients.showNotification("Syntax Error! " + error, "error", null, null, 5000);
         }
 
-        // Set the result label value to show in frontend
-        // resultLabel ID is set in .zul
-        resultLabel.setValue(getResult());
     }
 
-    public String getResult() {
-        // Function to convert Sets to String so it can be printed on frontend
-        System.out.println(String.join(",",queryResult.getSearchResults()));
-        return String.join(",",queryResult.getSearchResults());
+    public void onClick$btn(Event e) throws InterruptedException{
+        Window window = (Window) Executions.getCurrent().createComponents("g4file.zul", null, null);
+        window.setWidth("1000px");
+        window.setHeight("800px");
+        window.setStyle("z-index:100;");
+        window.setClosable(true);
+        window.doModal();
     }
 
 
@@ -157,22 +155,63 @@ public class Composer extends GenericForwardComposer {
     }
 
 
-    public void onClickG4() {
-
-        //create a window programmatically and use it as a modal dialog.
-        Window window = (Window)Executions.createComponents(
-                "popupG4.zul", null, null);
-        window.doModal();
+    public String getResult() {
+        // Function to convert Sets to String so it can be printed on frontend
+        String Result = String.join(",",queryResult.getSearchResults());
+        System.out.println(Result);
+        return "Results: " + String.join(",",Result);
     }
 
-    public String getG4asString() {
-        try {
-            String content = new String(Files.readAllBytes(Paths.get("./PQL.g4")), "UTF-8");
-         //   System.out.println(content);
-            return content;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return "Error loading G4 file";
+    public String getAttributes() {
+        // Function to convert Sets to String so it can be printed on frontend
+//        String Attribute = String.join(",", queryResult.getAttributes());
+        System.out.println(queryResult.getAttributes());
+        return "Attributes: " + String.valueOf(queryResult.getAttributes());
+//        return String.join(",",String.join(",",queryResult.getSearchResults()));
+    }
+
+    public String getLocations() {
+        // Function to convert Sets to String so it can be printed on frontend
+//        String Attribute = String.join(",", queryResult.getAttributes());
+        System.out.println(queryResult.getLocations());
+        return "Locations: " + String.valueOf(queryResult.getLocations());
+//        return String.join(",",String.join(",",queryResult.getSearchResults()));
+    }
+
+    public String getVariables() {
+        var29 = queryResult.getVariables().entrySet().iterator();
+        String returnedVariables = "";
+        Entry map = null;
+        if(var29.hasNext()) {
+            while(var29.hasNext()) {
+                map = (Map.Entry)var29.next();
+                System.out.println("Variable:\t" + (String)map.getKey() + " = " + map.getValue());
+                returnedVariables = returnedVariables + "Variable:\t" + (String)map.getKey() + " = "
+                        + map.getValue() + "\n";
+            }
+            return "Variables: Available";
+        }else{
+            System.out.println("Variables Not Available");
+            return "";
+        }
+    }
+
+    public String getTasks() {
+
+        var29 = queryResult.getTaskMap().entrySet().iterator();
+        String returnedTasks = "";
+        Entry map = null;
+        if(var29.hasNext()) {
+            while(var29.hasNext()) {
+                map = (Entry)var29.next();
+                System.out.println("Task:\t" + map.getKey() + " -> " + map.getValue());
+                returnedTasks = returnedTasks +  "Task:\t" + map.getKey() + " -> " + map.getValue() + "\n";
+            }
+
+            return returnedTasks;
+        }else{
+            System.out.println("Tasks Not Available");
+            return "";
         }
     }
 }

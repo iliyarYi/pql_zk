@@ -3,16 +3,14 @@ ace.define("ace/mode/pql_highlight_rules", ["require", "exports", "module", "ace
     var r = e("../lib/oop"),
         i = e("./text_highlight_rules").TextHighlightRules,
         s = function() {
-            var e = "SELECT|INSERT|INTO|FROM|WHERE|EQUALS|OVERLAPS|WITH|SUBSET|PROPER|GetTasks|NOT|AND|OR|ANY|EACH|ALL",
-                t = "TRUE|FALSE",
-                n = "AVG|COUNT|MIN|MAX",
-                r = "YILIYAER|PLACEHODLER",
-                c = "CanOccur|AlwaysOccurs|Executes|Canconflict|CanCooccur|Conflict|Cooccur|TotalCasual|TotalConcurrent",
+            var e = blueKeywords(),
+                t = booleanKeywords(),
+                n = greyKeywords(),
+                c = greenKeywords(),
                 i = this.createKeywordMapper({
                     "support.function": n,
                     keyword: e,
                     "constant.language": t,
-                    "storage.type": r,
                     "keyword.custom": c,
                 }, "identifier", false);
             this.$rules = {
