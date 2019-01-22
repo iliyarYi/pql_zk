@@ -5,3 +5,36 @@
 .ace_constant.ace_numeric {
   color: #e20f3d
 }
+
+.z-listcell-content, .z-listgroup-content, .z-listgroupfoot-content, .z-listfooter-content {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    color: rgba(0,0,0,0.9);
+    line-height: 1px;
+    overflow: hidden;
+}
+
+.z-listheader-content {
+    color: #fff;
+    position: relative;
+    padding: 12px;
+    line-height: 5px;
+
+}
+
+.z-column-content, .z-row-content, .z-group-content, .z-groupfoot-content, .z-footer-content {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    color: rgba(0,0,0,0.9);
+    line-height: 1px;
+    overflow: hidden;
+    padding: 1px;
+}
+
+.z-row:hover>.z-row-inner>.z-row-content {
+    color: rgba(0,0,0,0.9);
+}

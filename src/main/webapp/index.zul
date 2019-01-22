@@ -1,9 +1,14 @@
 <zk>
 	<style src="/css/style.css"/>
 	<script src="/keywords/support-PQLvocabulary.js"></script>
+
+
+
 	<window title="PQL Editor" border="normal" mode="overlapped" position="center" width="80%" height="80%"
 			maximizable="true" apply="pql_zk.Composer">
-		<div id="AceEditor" width="100%" height="60%">
+		<label id="errorLabel" style="color: red;" value="@bind(Composer.getAttributes())"></label>
+
+		<div id="AceEditor" width="100%" height="50%">
 
 			<customisedaceeditor id="aceTextBox" mode="pql" theme="dreamweaver" width="100%" height="90%" >
 
@@ -14,30 +19,52 @@
 					<!--SELECT * FROM * WHERE Executes(<*,"B",*,"B",*>);-->
 				</attribute>
 			</customisedaceeditor>
-			<button label="Ok" forward="onClick=onClickOk"/>&#160;
+			<button label="Search Query" forward="onClick=onClickOk"/>&#160;
 			<button label="Cancel" forward="onClick=onClickCancel"/>
 			<separator orient="vertical" width="30%" ></separator>
-
 			<button id="btn" label="PQL Grammar" onClick="onClick$btn" />
-
 			<button label="Parse" forward="onClick=onClickParse"/>
 		</div>
-		<div id="ResultOfQuery" width="100%" height="30%">
+		<div id="ResultOfQuery" width="100%" height="100%">
 			<separator />
 			<separator />
 			<separator />
-			<separator  bar="true"/>
-			<label id="attributeLabel" value="@bind(Composer.getAttributes())"></label>
-			<separator orient="vertical" width="5%" ></separator>
-			<label id="locationLabel" value="@bind(Composer.getLocations())"></label>
 			<separator />
-			<label id="variableLabel" multiline="true" value="@bind(Composer.getVariables())"></label>
-			<separator />
-			<label id="taskLabel" multiline="true" value="@bind(Composer.getTasks())"></label>
-			<separator />
-			<separator />
-			<label id="resultLabel"  value="@bind(Composer.getResult())"></label>
-			<separator bar="true" />
+			<!--<label id="errorLabel" style="color: red;" value="@bind(Composer.getAttributes())"></label>-->
+						<grid height="250px">
+							<rows>
+								<row valign="top">
+									<listbox id="attListbox" width="550px">
+										<listhead>
+											<listheader label="Attribute" valign="top"/>
+										</listhead>
+									</listbox>
+
+									<listbox id="locListbox" width="550px">
+										<listhead>
+											<listheader label="Location" valign="top"/>
+										</listhead>
+									</listbox>
+								</row>
+
+								<row valign="top">
+
+									<listbox id="taskListbox" width="550px" style="vertical-align: top;">
+										<listhead>
+											<listheader label="Tasks" align="left"/>
+											<listheader label="Similarity Threshold" align="left" width="40%"/>
+											<listheader label="Similar Tasks" align="left"/>
+										</listhead>
+									</listbox>
+
+									<listbox id="resultListbox" width="550px" style="vertical-align: top;">
+										<listhead>
+											<listheader label="Result" align="left"/>
+										</listhead>
+									</listbox>
+								</row>
+							</rows>
+						</grid>
 		</div>
 
 

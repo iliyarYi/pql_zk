@@ -13,10 +13,7 @@ import org.pql.antlr.PQLParser;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.util.GenericForwardComposer;
-import org.zkoss.zul.Hlayout;
-import org.zkoss.zul.Label;
-import org.zkoss.zul.Textbox;
-import org.zkoss.zul.Window;
+import org.zkoss.zul.*;
 import org.zkoss.zk.ui.*;
 import org.zkoss.zk.ui.util.*;
 import org.pql.query.*;
@@ -24,8 +21,14 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.*;
 import java.util.*;
-import org.pql.ini.*;
-import org.pql.api.*;
+import org.pql.api.PQLAPI;
+import org.pql.core.PQLTask;
+import org.pql.ini.PQLIniFile;
+import org.pql.query.PQLQueryResult;
+import org.zkoss.zul.Label;
+import org.zkoss.zul.Window;
+
+import java.util.List;
 import java.util.Map.Entry;
 
 public class Composer extends GenericForwardComposer {
@@ -41,7 +44,17 @@ public class Composer extends GenericForwardComposer {
     Label locationLabel;
     Label variableLabel;
     Label taskLabel;
+    Label errorLabel;
     Iterator var29;
+    private Listbox resultListbox;
+    private ListModelList modelList;
+    private Listbox attListbox;
+    private ListModelList modelattList;
+    private Listbox locListbox;
+    private ListModelList modellocList;
+    private Listbox taskListbox;
+    private ListModelList modeltaskList;
+
 
     public void doAfterCompose(Component comp) throws Exception {
         super.doAfterCompose(comp);
@@ -52,7 +65,7 @@ public class Composer extends GenericForwardComposer {
         // Get value entered in ace editor
         String textValue = aceTextBox.getValue();
         // Ignore empty spaces and lines
-        textValue = textValue.trim();
+    //    textValue = textValue.trim();
         PQLIniFile iniFile = new PQLIniFile();
         if (!iniFile.load()) {
             iniFile.create();
@@ -79,22 +92,54 @@ public class Composer extends GenericForwardComposer {
             // Parse input query using antlr parser
             parser.query();
 
+            PQLQueryResult myQueryResult = null;
             // Assign result of the query into queryResult
             queryResult = pqlAPI.query(textValue);
-            // Show notification to user
-            Clients.showNotification("Query Successful!", "info", null, null, 1000);
+            myQueryResult = pqlAPI.query("SELECT * FROM *;");
+
 //            System.out.println(queryResult.getSearchResults());
             // Set the result label value to show in frontend
             // resultLabel ID is set in .zul
-            resultLabel.setValue(getResult());
-            attributeLabel.setValue(getAttributes());
-            locationLabel.setValue(getLocations());
-            variableLabel.setValue(getVariables());
-            taskLabel.setValue(getTasks());
+            errorLabel.setValue(null);
+          //  resultLabel.setValue(getResult());
+         //   attributeLabel.setValue(getAttributes());
+//            locationLabel.setValue(getLocations());
+//            variableLabel.setValue(getVariables());
+ //           taskLabel.setValue(getTasks());
+            // Result listbox
+            List<String> resultData = new ArrayList<String>(queryResult.getSearchResults());
+            System.out.println("[Search Result]: " + myQueryResult.getSearchResults() + "[Error]: " + myQueryResult.getNumberOfParseErrors());
+            modelList = new ListModelList(resultData, true);
+            resultListbox.setModel(modelList);
+            // Attribute Listbox
+            String tempattStr = String.valueOf(queryResult.getAttributes());
+
+            System.out.println(tempattStr);
+            tempattStr = tempattStr.substring(1, tempattStr.length()-1);
+            List<String> attList = new ArrayList<String>(Arrays.asList(tempattStr.split(",")));
+            modelattList = new ListModelList(attList, true);
+            attListbox.setModel(modelattList);
+            // Location Listbox
+            String templocStr = String.valueOf(queryResult.getLocations());
+            templocStr = templocStr.substring(1, templocStr.length()-1);
+            List<String> locList = new ArrayList<String>(Arrays.asList(templocStr.split(",")));
+            modellocList = new ListModelList(locList, true);
+            locListbox.setModel(modellocList);
+
+            readTasks();
+            // Show notification to user
+            Clients.showNotification("Query Successful!", "info", null, null, 1000);
+
         } catch (Exception e) {
             //Get error message and show it to user as error notification when bad things happen
             String error = e.getMessage();
             Clients.showNotification("Syntax Error! " + error, "error", null, null, 5000);
+            errorLabel.setValue(error);
+          //  resultLabel.setValue(null);
+//            attributeLabel.setValue(null);
+//            locationLabel.setValue(null);
+//            variableLabel.setValue(null);
+//            taskLabel.setValue(null);
         }
 
     }
@@ -114,7 +159,7 @@ public class Composer extends GenericForwardComposer {
         // Happens when clicked parse button
         String textValue = aceTextBox.getValue();
        // textValue = textValue.replaceAll("\\s+","");
-        textValue = textValue.trim();
+      //  textValue = textValue.trim();
       //  System.out.println(textValue);
 
         try {
@@ -155,19 +200,28 @@ public class Composer extends GenericForwardComposer {
     }
 
 
-    public String getResult() {
+    public List<String> getResult() {
+        List<String> resultList;
+
         // Function to convert Sets to String so it can be printed on frontend
         String Result = String.join(",",queryResult.getSearchResults());
         System.out.println(Result);
-        return "Results: " + String.join(",",Result);
+        resultList = new ArrayList<String>(queryResult.getSearchResults());
+        return resultList;
+//        return "Results: " + String.join(",",Result);
     }
 
-    public String getAttributes() {
+    public List<String> getAttributes() {
         // Function to convert Sets to String so it can be printed on frontend
 //        String Attribute = String.join(",", queryResult.getAttributes());
-        System.out.println(queryResult.getAttributes());
-        return "Attributes: " + String.valueOf(queryResult.getAttributes());
-//        return String.join(",",String.join(",",queryResult.getSearchResults()));
+        List<String> attList;
+        String tempStr = String.valueOf(queryResult.getAttributes());
+        attList = new ArrayList<String>(Arrays.asList(tempStr.split(",")));
+
+       // System.out.println("Attribute type: " + attList);
+
+  //      return "Attributes: " + String.valueOf(queryResult.getAttributes());
+        return attList;
     }
 
     public String getLocations() {
@@ -205,13 +259,63 @@ public class Composer extends GenericForwardComposer {
             while(var29.hasNext()) {
                 map = (Entry)var29.next();
                 System.out.println("Task:\t" + map.getKey() + " -> " + map.getValue());
+
                 returnedTasks = returnedTasks +  "Task:\t" + map.getKey() + " -> " + map.getValue() + "\n";
             }
-
             return returnedTasks;
         }else{
             System.out.println("Tasks Not Available");
             return "";
+        }
+    }
+
+
+    public void readTasks() {
+        taskListbox.getItems().clear();
+        //  System.out.println("doing readTasks");
+//        ArrayList<String> Tasks = new ArrayList<String>();
+//        ArrayList<String> Threshold = new ArrayList<String>();
+//        ArrayList<String> Results = new ArrayList<String>();
+
+        var29 = queryResult.getTaskMap().entrySet().iterator();
+        Entry<String,org.pql.core.PQLTask> map = null;
+        if(var29.hasNext()) {
+            while(var29.hasNext()) {
+                map = (Entry)var29.next();
+//                Tasks.add(map.getValue().toString().substring(0,3));
+//                Threshold.add(map.getValue().toString().substring(4,12));
+//                Results.add(map.getValue().toString().substring(14,(map.getValue().toString()).length()));
+
+                Label temp1 = new Label();
+                Label temp2 = new Label();
+                Label temp3 = new Label();
+                Listitem listItem1 = new Listitem();
+                Listcell listCell1 = new Listcell();
+                Listcell listCell2 = new Listcell();
+                Listcell listCell3 = new Listcell();
+      //          org.pql.core.PQLTask pqlTask = (org.pql.core.PQLTask) map.getValue();
+//                System.out.println("Type is: " + map.getValue().getLabel());
+                temp1.setValue(map.getValue().getLabel());
+                temp2.setValue(Double.toString(map.getValue().getSimilarity()));
+                temp3.setValue(String.join(",", map.getValue().getSimilarLabels()));
+
+                listCell1.appendChild(temp1);
+                listCell2.appendChild(temp2);
+                listCell3.appendChild(temp3);
+                listItem1.appendChild(listCell1);
+                listItem1.appendChild(listCell2);
+                listItem1.appendChild(listCell3);
+
+                taskListbox.appendChild(listItem1);
+//                taskListbox.appendItem(map.getValue().toString().substring(0,3), map.getValue().toString().substring(0,3));
+//                taskListbox.appendItem(map.getValue().toString().substring(4,12),map.getValue().toString().substring(4,12));
+//                taskListbox.appendItem(map.getValue().toString().substring(14,(map.getValue().toString()).length()),
+//                        map.getValue().toString().substring(14,(map.getValue().toString()).length()));
+//                returnedTasks = returnedTasks +  "Task:\t" + Tasks + " -> Threshold:\t " + Threshold + " -> Results:\t" + Results + "\n";
+//                System.out.println(returnedTasks);
+            }
+        }else{
+            System.out.println("Tasks Not Available");
         }
     }
 }
